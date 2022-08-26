@@ -27,12 +27,13 @@
             font-size: 1.2rem;
             /*overflow-x: hidden*/
         }
+
     </style>
 </head>
 
 <body>
 
-    <script>
+<script>
         function substringBeforeLast(string, delimiter, missingDelimiterValue) {
             const index = string.lastIndexOf(delimiter);
             if (index === -1) {
@@ -251,8 +252,9 @@
             return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i]
         }
 
-    </script>
-    <script>
+
+</script>
+<script>
         /*const video = document.querySelector('video');
         const track = document.createElement('track');
         track.src="http://192.168.0.105:8080/api/file?path=D%3A%5C%E6%96%87%E6%A1%A3%5C%E6%95%99%E7%A8%8B%5CAdobe%20Animate%20Essential%20Training%5C001.%20Animating%20media%20with%20Adobe%20Animate.vtt";
@@ -556,7 +558,14 @@
         }
 
         let timeout = 0;
-
+function substringAfterLast(string, delimiter, missingDelimiterValue) {
+    const index = string.lastIndexOf(delimiter);
+    if (index === -1) {
+        return missingDelimiterValue || string;
+    } else {
+        return string.substring(index + delimiter.length);
+    }
+}
         function startVideo() {
 
 
@@ -566,6 +575,8 @@
             video.src = `/api/files?path=${encodeURIComponent(extractVideoPathFromUrlAddress())}`;
             const track = document.createElement('track');
             track.src = substringBeforeLast(video.src, ".") + ".vtt";
+            if(titleMessage)
+            titleMessage.textContent=substringAfterLast(extractVideoPathFromUrlAddress(),'/');
             track.default = true;
             video.appendChild(track);
 
@@ -653,7 +664,7 @@
             })
         }
 
-        startVideo();
+
 
         window.addEventListener('resize', evt => {
             adjustSize(video, player);
@@ -1417,6 +1428,7 @@
             const div = createBottomSheet(_items);
             document.body.appendChild(div);
         });
+        startVideo();
         function createBottomSheet(items) {
             const div = document.createElement('div');
             div.style.position = "fixed";
@@ -1518,7 +1530,8 @@
             });
             return div;
         }
-    </script>
+
+</script>
 </body>
 
 </html>
