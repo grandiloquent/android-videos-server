@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件管理器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="layout-toolbar">
+    <div class="nav">
+        <div class="action-item" id="action-upload">
+            <div class="action-item-con">
+                <i class="icon icon-upload-s"></i>
+                <span class="act-txt">
+                    上传
+                </span>
+                <div class="bubble-menu">
+                    <div class="bubble-menu-list">
+                        <div class="bubble-menu-item">
+                            <i class="icon icon-file-s"></i>
+                            <span>文件</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-item action-options" style="margin-left: 16px;border-radius: 2px;border: 1px solid #dbdbdb">
+            <div class="action-item-con" style="background: #fff;color: #333;">
+                <i class="icon icon-add"></i>
+                <span class="act-txt">
+                   工具
+                </span>
+                <div class="bubble-menu">
+                    <div class="bubble-menu-list">
+                        <div class="bubble-menu-item action-new-folder">
+                            <span>新建文件夹</span>
+                        </div>
+                        <div class="bubble-menu-item action-new-file">
+                            <span>新建文件</span>
+                        </div>
+                        <div class="bubble-menu-item action-rename">
+                            <span>重命名</span>
+                        </div>
+                        <div class="bubble-menu-item action-delete">
+                            <span>删除</span>
+                        </div>
+                        <div class="bubble-menu-item action-search">
+                            <span>搜索</span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-item action-more" style="margin-left: 16px;border-radius: 2px;border: 1px solid #dbdbdb">
+            <div class="action-item-con" style="background: #fff;color: #333;">
+                <i class="icon icon-add"></i>
+                <span class="act-txt">
+                    更多
+                </span>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="group-list">
+
+</div>
+<!--<custom-dialog title="下载文件夹" content="确定下载吗？"></custom-dialog>-->
+<script src="shared.js"></script>
+<script src="index.js"></script>
+<script src="dialog.js"></script>
+ 
+</body>
+</html>

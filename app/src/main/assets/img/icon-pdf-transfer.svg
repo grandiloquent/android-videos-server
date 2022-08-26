@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>转换@1.5</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard备份-3" transform="translate(-1302.000000, -56.000000)">
+            <g id="Preview/Picture" transform="translate(0.000000, 38.000000)">
+                <g id="编组-4备份" transform="translate(1288.000000, 12.000000)">
+                    <g id="转换" transform="translate(14.000000, 6.000000)">
+                        <rect id="矩形" fill="#3E3E3E" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                        <g id="编组" transform="translate(4.000000, 4.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                            <path d="M15,4 C15.5522847,4 16,4.44771525 16,5 L16,15 C16,15.5522847 15.5522847,16 15,16 L5,16 C4.44771525,16 4,15.5522847 4,15 L4,5 C4,4.44771525 4.44771525,4 5,4 L15,4 Z M14,6 L6,6 L6,14 L14,14 L14,6 Z" id="矩形"></path>
+                            <path d="M11,0 C11.5522847,-1.01453063e-16 12,0.44771525 12,1 L12,1 L12,3.073 L10,3.073 L10,2 L2,2 L2,10 L3.073,10 L3.073,12 L1,12 C0.487164161,12 0.0644928393,11.6139598 0.00672773133,11.1166211 L0,11 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 L1,0 Z" id="形状结合"></path>
+                            <path d="M7.985,8 L8.6856647,10.2757539 L9.384,8 L10.614,8 L11.3143353,10.2757539 L12.014,8 L12.851,8 L11.621,12 L11.007,12 L10,8.72394073 L8.992,12 L8.378,12 L7.148,8 L7.985,8 Z" id="形状结合"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

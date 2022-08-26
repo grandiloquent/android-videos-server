@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑器</title>
+
+    <style>
+        html,
+        body,
+        h1 {
+            font-family: Roboto, Helvetica Neue, Arial, sans-serif;
+        }
+
+        body,
+        h1 {
+            font-size: small;
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: #4d5156;
+        }
+
+        a {
+            color: #1558d6;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            display: block;
+        }
+
+        a {
+            display: block;
+            background-color: #fff;
+            /* text-align: center; */
+            font-size: 14px;
+            color: #202124;
+            /* border-radius: 20px; */
+            height: 24px;
+            line-height: 24px;
+            border-bottom: 1px solid #dadce0;
+            /* margin: 16px 16px 22px 16px; */
+            padding: 8px 13px;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .input-wrapper {
+            padding: 0 4px 0 4px;
+            border: 1px solid #cfd5de;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type=text] {
+            font-size: 12px;
+            border-radius: 0;
+            background-color: #fff;
+            color: rgba(0, 0, 0, .9);
+            vertical-align: top;
+            height: 20px;
+            line-height: 20px;
+            border: 0;
+            outline: 0;
+            flex-grow: 1;
+        }
+
+        input[type=text] :focus {
+            border: 0;
+        }
+
+        .btn {
+            -webkit-text-size-adjust: 100%;
+            --sash-size: 4px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-family: inherit;
+            margin: 0;
+            overflow: visible;
+            text-transform: none;
+            -webkit-appearance: button;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            outline: 0 none;
+            text-decoration: none;
+            white-space: nowrap;
+            border-radius: 0;
+            display: inline-block;
+            font-size: 0;
+            border: none;
+            line-height: inherit;
+            box-sizing: border-box;
+            min-width: 16px;
+            vertical-align: middle;
+            background-color: #fff;
+            width: 16px;
+            height: 16px;
+            padding: 0;
+        }
+
+        .ico {
+            -webkit-text-size-adjust: 100%;
+            --sash-size: 4px;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-family: inherit;
+            text-transform: none;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            white-space: nowrap;
+            line-height: inherit;
+            font-weight: 400;
+            font-style: normal;
+            box-sizing: border-box;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-position: inherit;
+            font-size: 0;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iIzg4OCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNSAxM2wtMi44ODEtMi44ODFDMTIuNjc0IDkuMjA5IDEzIDguMTQ0IDEzIDdhNiA2IDAgMTAtNiA2IDUuOTY4IDUuOTY4IDAgMDAzLjExOS0uODgxTDEzIDE1bDItMnpNMyA3YTQgNCAwIDExOCAwIDQgNCAwIDAxLTggMHoiLz48L3N2Zz4=);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        // http://192.168.0.109:12345
+        async function fetchData(path) {
+            document.getElementById('container').innerHTML = '';
+            const response = await fetch("/api/books?path=" + (path || ''));
+            const items = await response.json();
+
+            const fragment = document.createDocumentFragment();
+            for (const item of items) {
+                const a = document.createElement('a');
+                a.textContent = item.name;
+                a.dataset.src = item.src;
+                a.dataset.is = item.isDirectory;
+                a.addEventListener('click', evt => {
+                    if (a.dataset.is === 'true') {
+                        document.title = a.textContent;
+                        window.location.hash = a.dataset.src;
+                        // const url = new URL(window.location);
+                        // window.history.pushState({}, '', url);
+                    } else {
+                        location="/book" + a.dataset.src;
+                    }
+                })
+                fragment.appendChild(a);
+            }
+            document.getElementById('container').appendChild(fragment);
+        }
+        window.addEventListener('hashchange', evt => {
+            fetchData(window.location.hash.substring(1));
+        })
+        fetchData(window.location.hash.substring(1));
+    </script>
+</body>
+
+</html>

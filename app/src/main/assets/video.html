@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            color: #030303;
+            background-color: #fff;
+            font-size: 10px;
+            font-family: Roboto, Arial, sans-serif
+        }
+
+        html {
+            word-wrap: break-word;
+            color: #030303;
+            background-color: #fff;
+            -webkit-text-size-adjust: 100%
+        }
+
+        body {
+            margin: 0;
+            padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            font-size: 1.2rem;
+            /*overflow-x: hidden*/
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        function substringBeforeLast(string, delimiter, missingDelimiterValue) {
+            const index = string.lastIndexOf(delimiter);
+            if (index === -1) {
+                return missingDelimiterValue || string;
+            } else {
+                return string.substring(0, index);
+            }
+        }
+
+        function createPrevious() {
+            const previous = document.createElement('button');
+            [
+                ["outline", "none"],
+                ["font", "inherit"],
+                ["textTransform", "inherit"],
+                ["color", "inherit"],
+                ["cursor", "pointer"],
+                ["border", "none"],
+                ["background", "transparent"],
+                ["boxSizing", "border-box"],
+                ["height", "48px"],
+                ["width", "48px"],
+                ["padding", "6px"],
+            ].forEach(x => previous.style[x[0]] = x[1]);
+
+            const c3Icon = document.createElement('div');
+            [
+                ["wordWrap", "break-word"],
+                ["WebkitTextSizeAdjust", "100%"],
+                ["direction", "ltr"],
+                ["WebkitTapHighlightColor", "rgba(0,0,0,0)"],
+                ["pointerEvents", "auto"],
+                ["visibility", "visible"],
+                ["font", "inherit"],
+                ["textTransform", "inherit"],
+                ["color", "inherit"],
+                ["cursor", "pointer"],
+                ["display", "inline-block"],
+                ["flexShrink", "0"],
+                ["fill", "currentColor"],
+                ["stroke", "none"],
+                ["height", "36px"],
+                ["width", "36px"],
+            ].forEach(x => c3Icon.style[x[0]] = x[1]);
+            previous.appendChild(c3Icon);
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('height', '24');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '24');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M19,6L9,12l10,6V6L19,6z M7,6H5v12h2V6z');
+            svg.appendChild(path);
+
+            c3Icon.appendChild(svg);
+            return previous;
+        }
+
+        function createPlay() {
+            const button = document.createElement('button');
+            [
+                ["outline", "none"],
+                ["font", "inherit"],
+                ["textTransform", "inherit"],
+                ["color", "inherit"],
+                ["cursor", "pointer"],
+                ["border", "none"],
+                ["background", "transparent"],
+                ["boxSizing", "border-box"],
+                ["margin", "0 60px"],
+                ["height", "56px"],
+                ["width", "56px"],
+                ["padding", "0"],
+            ].forEach(x => button.style[x[0]] = x[1]);
+
+            const c3Icon = document.createElement('div');
+            [
+                ["display", "inline-block"],
+                ["flexShrink", "0"],
+                ["fill", "currentColor"],
+                ["stroke", "none"],
+                ["height", "56px"],
+                ["width", "56px"],
+                ["padding", "0"],
+            ].forEach(x => c3Icon.style[x[0]] = x[1]);
+
+            button.appendChild(c3Icon);
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('height', '24');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '24');
+            svg.setAttribute('enable-background', 'new 0 0 24 24');
+            svg.style.width = '100%';
+            svg.style.height = '100%';
+
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M6,4l12,8L6,20V4z');
+            path.style.fill = '#fff';
+
+            g.appendChild(path);
+            svg.appendChild(g);
+
+            c3Icon.appendChild(svg);
+
+            button.path = path;
+            return button;
+        }
+
+        function createFullScreen() {
+            const button = document.createElement('div');
+            [
+                ["outline", "none"],
+                ["font", "inherit"],
+                ["textTransform", "inherit"],
+                ["color", "inherit"],
+                ["cursor", "pointer"],
+                ["border", "none"],
+                ["background", "transparent"],
+                ["boxSizing", "border-box"],
+                ["height", "48px"],
+                ["width", "48px"],
+                ["padding", "12px"],
+            ].forEach(x => button.style[x[0]] = x[1]);
+
+            const c3Icon = document.createElement('div');
+            [
+                ["display", "inline-block"],
+                ["flexShrink", "0"],
+                ["width", "24px"],
+                ["height", "24px"],
+                ["fill", "currentColor"],
+                ["stroke", "none"],
+            ].forEach(x => c3Icon.style[x[0]] = x[1]);
+            button.appendChild(c3Icon);
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('enable-background', 'new 0 0 24 24');
+            svg.setAttribute('height', '24');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('width', '24');
+            svg.style.width = "100%";
+            svg.style.height = "100%";
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M7,11H6V6h5v1H7V11z M18,6h-5v1h4v4h1V6z M18,13h-1v4h-4v1h5V13z M11,17H7v-4H6v5h5V17z');
+            path.style.fill = '#fff';
+
+            svg.appendChild(path);
+
+
+            c3Icon.appendChild(svg);
+
+
+            return button;
+        }
+
+        function formatDuration(ms) {
+            if (isNaN(ms)) return '0:00';
+            if (ms < 0) ms = -ms;
+            const time = {
+                hour: Math.floor(ms / 3600) % 24,
+                minute: Math.floor(ms / 60) % 60,
+                second: Math.floor(ms) % 60,
+            };
+            return Object.entries(time)
+                .filter((val, index) => index || val[1])
+                .map(val => (val[1] + '').padStart(2, '0'))
+                .join(':');
+        }
+
+        function calculateProgressPercent(video) {
+            return ((video.currentTime / video.duration) * 100) + '%';
+        }
+
+        function calculateLoadedPercent(video) {
+            if (!video.buffered.length) {
+                return '0';
+            }
+            return (video.buffered.end(0) / video.duration) + '%';
+        }
+
+        function adjustSize(video, player) {
+            let factor = Math.max(video.videoWidth / window.innerWidth, video.videoHeight / window.innerHeight);
+            let width = video.videoWidth / factor;
+            let height = video.videoHeight / factor;
+            video.style.width = width + 'px';
+            video.style.height = height + 'px';
+            video.style.marginLeft = (window.innerWidth - width) / 2 + 'px';
+            player.style.paddingBottom = '0';
+            player.style.height = height + 'px';
+        }
+
+        function jumpSpecifiedTime(video) {
+            const t = new URL(location.href).searchParams.get('t');
+            if (t) {
+                const pieces = t.split(' ');
+                const length = pieces.length;
+                let seconds = 0;
+                for (let index = 0; index < length; index++) {
+                    const element = pieces[index];
+                    seconds += parseInt(element) * Math.pow(60, length - index - 1);
+                }
+                video.currentTime = seconds;
+            }
+        }
+
+        function humanFileSize(size) {
+            if (size === 0)
+                return '0';
+            const i = Math.floor(Math.log(size) / Math.log(1024));
+            return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i]
+        }
+
+    </script>
+    <script>
+        /*const video = document.querySelector('video');
+        const track = document.createElement('track');
+        track.src="http://192.168.0.105:8080/api/file?path=D%3A%5C%E6%96%87%E6%A1%A3%5C%E6%95%99%E7%A8%8B%5CAdobe%20Animate%20Essential%20Training%5C001.%20Animating%20media%20with%20Adobe%20Animate.vtt";
+        track.default=true;
+        video.appendChild(track);*/
+
+        const player = document.createElement('div');
+        [
+            ["background", "#000"],
+            ["paddingBottom", "56.25%"],
+            ["overflow", "hidden"],
+            ["backgroundColor", "#000"],
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["WebkitBoxPack", "center"],
+            ["justifyContent", "center"],
+            ["color", "#fff"],
+            ["position", "relative"],
+            ["transition", "background-color .3s ease-in-out,background-image .3s ease-in-out"],
+            ["width", "100%"],
+            ["margin", "0"],
+            ["top", "0"],
+        ].forEach(x => player.style[x[0]] = x[1]);
+
+        const html5VideoPlayer = document.createElement('div');
+        [
+
+            ["width", "100%"],
+            ["height", "100%"],
+            ["overflow", "hidden"],
+            ["zIndex", "0"],
+            ["outline", "0"],
+            ["fontFamily", "\"YouTube Noto\",Roboto,Arial,Helvetica,sans-serif"],
+            ["color", "#eee"],
+            ["textAlign", "left"],
+            ["direction", "ltr"],
+            ["fontSize", "11px"],
+            ["lineHeight", "1.3"],
+            ["WebkitFontSmoothing", "antialiased"],
+            ["WebkitTapHighlightColor", "rgba(0,0,0,0)"],
+            ["touchAction", "manipulation"],
+            ["position", "absolute"],
+            ["top", "0"],
+            ["left", "0"],
+            ["right", "0"],
+            ["bottom", "0"],
+            ["backgroundColor", "#000"],
+        ].forEach(x => html5VideoPlayer.style[x[0]] = x[1]);
+        player.appendChild(html5VideoPlayer);
+
+        const html5VideoContainer = document.createElement('div');
+        [
+            ["zIndex", "10"],
+            ["position", "relative"],
+        ].forEach(x => html5VideoContainer.style[x[0]] = x[1]);
+        html5VideoPlayer.appendChild(html5VideoContainer);
+
+        const video = document.createElement('video');
+        [
+            ["outline", "0"],
+            ["display", "block"],
+            ["position", "absolute"],
+            ["width", "360px"],
+            ["height", "203px"],
+            ["left", "0px"],
+            ["top", "0px"],
+        ].forEach(x => video.style[x[0]] = x[1]);
+        html5VideoContainer.appendChild(video);
+
+        const playerContainer = document.createElement('div');
+        [
+            ["overflow", "visible!important"],
+            ["position", "fixed"],
+            // ["top", "48px"],
+            ["right", "env(safe-area-inset-right)"],
+            ["left", "env(safe-area-inset-left)"],
+            ["zIndex", "2"],
+        ].forEach(x => playerContainer.style[x[0]] = x[1]);
+        playerContainer.appendChild(player);
+
+        const playerControlOverlay = document.createElement('div');
+        [
+            ["position", "absolute"],
+            ["top", "0"],
+            ["left", "0"],
+            ["right", "0"],
+            ["bottom", "0"],
+            ["touchAction", "manipulation"],
+            ["transition", "transform .7s,-webkit-transform .7s"],
+            ["transitionProperty", "all"],
+            ["pointerEvents", "auto"],
+            ["backgroundColor", "initial"],
+        ].forEach(x => playerControlOverlay.style[x[0]] = x[1]);
+        playerContainer.appendChild(playerControlOverlay);
+
+        const playerControlsTop = document.createElement('div');
+        [
+            ["display", "flex"],
+            ["position", "absolute"],
+            ["top", "0"],
+            ["right", "0"],
+            ["zIndex", "1"],
+        ].forEach(x => playerControlsTop.style[x[0]] = x[1]);
+        playerControlOverlay.appendChild(playerControlsTop);
+
+        const playerControlsMiddle = document.createElement('div');
+        [
+
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["WebkitBoxPack", "center"],
+            ["justifyContent", "center"],
+            ["position", "absolute"],
+            ["top", "50%"],
+            ["width", "100%"],
+            ["transform", "translateY(-50%)"],
+            ["zIndex", "2"],
+        ].forEach(x => playerControlsMiddle.style[x[0]] = x[1]);
+        playerControlOverlay.appendChild(playerControlsMiddle);
+
+        let playButton = createPlay();
+        playerControlsMiddle.appendChild(playButton);
+
+        const playerControlsBottom = document.createElement('div');
+        [
+            ["display", "flex"],
+            ["WebkitBoxPack", "justify"],
+            ["justifyContent", "space-between"],
+            ["position", "absolute"],
+            ["zIndex", "2"],
+            ["bottom", "30px"],
+            ["width", "auto"],
+            ["left", "12px"],
+            ["right", "12px"],
+        ].forEach(x => playerControlsBottom.style[x[0]] = x[1]);
+        playerControlOverlay.appendChild(playerControlsBottom);
+
+        const ytmTimeDisplay = document.createElement('div');
+        [
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["marginLeft", "16px"],
+            ["fontWeight", "500"],
+        ].forEach(x => ytmTimeDisplay.style[x[0]] = x[1]);
+        playerControlsBottom.appendChild(ytmTimeDisplay);
+
+        const timeDisplayContent = document.createElement('div');
+        [
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["pointerEvents", "none"],
+        ].forEach(x => timeDisplayContent.style[x[0]] = x[1]);
+        ytmTimeDisplay.appendChild(timeDisplayContent);
+
+        const timeFirst = document.createElement('div');
+        [
+            ["pointerEvents", "none"],
+            ["color", "#fff"],
+        ].forEach(x => timeFirst.style[x[0]] = x[1]);
+        timeDisplayContent.appendChild(timeFirst);
+
+        const timeDelimiter = document.createElement('div');
+        [
+            ["pointerEvents", "none"],
+            ["color", "#fff"],
+            ["opacity", ".7"],
+            ["margin", "0 4px"],
+        ].forEach(x => timeDelimiter.style[x[0]] = x[1]);
+        timeDisplayContent.appendChild(timeDelimiter);
+
+        timeDelimiter.textContent = '/';
+
+        const timeSecond = document.createElement('div');
+        [
+            ["pointerEvents", "none"],
+            ["color", "#fff"],
+            ["opacity", ".7"],
+        ].forEach(x => timeSecond.style[x[0]] = x[1]);
+        timeDisplayContent.appendChild(timeSecond);
+
+        const fullScreenButton = createFullScreen();
+        playerControlsBottom.appendChild(fullScreenButton);
+
+        const playerControlsPb = document.createElement('div');
+        [
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["position", "absolute"],
+            ["height", "45px"],
+            ["bottom", "0"],
+            ["left", "30px"],
+            ["right", "30px"],
+            ["width", "auto"],
+            ["zIndex", "2"],
+        ].forEach(x => playerControlsPb.style[x[0]] = x[1]);
+        playerControlOverlay.appendChild(playerControlsPb);
+
+        const ytmProgressBar = document.createElement('div');
+        [
+
+            ["overflow", "visible"],
+            ["cursor", "pointer"],
+            ["position", "relative"],
+            ["display", "flex"],
+            ["WebkitBoxAlign", "center"],
+            ["alignItems", "center"],
+            ["padding", "0"],
+            ["width", "100%"],
+        ].forEach(x => ytmProgressBar.style[x[0]] = x[1]);
+        playerControlsPb.appendChild(ytmProgressBar);
+
+        const progressBarLine = document.createElement('div');
+        [
+
+            ["position", "absolute"],
+            ["height", "3px"],
+            ["top", "50%"],
+            ["transform", "translateY(-50%)"],
+            ["padding", "20px 0"],
+            ["width", "100%"],
+        ].forEach(x => progressBarLine.style[x[0]] = x[1]);
+        ytmProgressBar.appendChild(progressBarLine);
+
+        const progressBarBackground = document.createElement('div');
+        [
+
+            ["backgroundColor", "#fff"],
+            ["opacity", ".3"],
+            ["position", "absolute"],
+            ["height", "3px"],
+            ["width", "100%"],
+        ].forEach(x => progressBarBackground.style[x[0]] = x[1]);
+        progressBarLine.appendChild(progressBarBackground);
+
+        const progressBarLoaded = document.createElement('div');
+        [
+
+            ["backgroundColor", "#fff"],
+            ["opacity", ".6"],
+            ["pointerEvents", "none!important"],
+            ["position", "absolute"],
+            ["height", "3px"],
+            //["width", "0.616006%"],
+        ].forEach(x => progressBarLoaded.style[x[0]] = x[1]);
+        progressBarLine.appendChild(progressBarLoaded);
+
+        const progressBarPlayed = document.createElement('div');
+        [
+
+            ["backgroundColor", "red"],
+            ["pointerEvents", "none!important"],
+            ["position", "absolute"],
+            ["height", "3px"],
+            //["width", "0.234386%"],
+        ].forEach(x => progressBarPlayed.style[x[0]] = x[1]);
+        progressBarLine.appendChild(progressBarPlayed);
+
+        const progressBarPlayheadWrapper = document.createElement('div');
+        [
+            ["zIndex", "0"],
+            ["marginLeft", "0.225011%"],
+        ].forEach(x => progressBarPlayheadWrapper.style[x[0]] = x[1]);
+        ytmProgressBar.appendChild(progressBarPlayheadWrapper);
+
+        const progressBarPlayhead = document.createElement('div');
+        [
+
+            ["display", "block"],
+            ["padding", "8px 6px 8px 0"],
+        ].forEach(x => progressBarPlayhead.style[x[0]] = x[1]);
+        progressBarPlayheadWrapper.appendChild(progressBarPlayhead);
+
+        const progressBarPlayheadDot = document.createElement('div');
+        [
+
+            ["display", "block"],
+            ["height", "12px"],
+            ["width", "12px"],
+            ["borderRadius", "50%"],
+            ["backgroundColor", "red"],
+        ].forEach(x => progressBarPlayheadDot.style[x[0]] = x[1]);
+        progressBarPlayhead.appendChild(progressBarPlayheadDot);
+
+        document.body.appendChild(playerContainer);
+
+        video.controlslist = "nodownload";
+
+        ytmProgressBar.addEventListener('click', evt => {
+            const bcr = ytmProgressBar.getBoundingClientRect();
+            let t = (evt.pageX - bcr.left) / bcr.width * video.duration;
+            video.currentTime = t;
+        })
+
+        function extractVideoPathFromUrlAddress(video) {
+            return new URL(video ? video.src : location.href).searchParams.get('path');
+        }
+
+        let timeout = 0;
+
+        function startVideo() {
+
+
+            timeFirst.textContent = "00:00";
+
+
+            video.src = `/api/files?path=${encodeURIComponent(extractVideoPathFromUrlAddress())}`;
+            const track = document.createElement('track');
+            track.src = substringBeforeLast(video.src, ".") + ".vtt";
+            track.default = true;
+            video.appendChild(track);
+
+
+            video.addEventListener('progress', evt => {
+                progressBarLoaded.style.width = calculateLoadedPercent(video);
+            });
+            video.addEventListener('durationchange', evt => {
+                timeSecond.textContent = formatDuration(video.duration);
+            });
+            // let width=(progressBarLine.getBoundingClientRect().width-12)/progressBarLine.getBoundingClientRect().width;
+
+            video.addEventListener('timeupdate', evt => {
+                timeFirst.textContent = formatDuration(video.currentTime);
+                let percent = calculateProgressPercent(video);
+                progressBarPlayed.style.width = percent;
+                progressBarPlayheadWrapper.style.marginLeft = percent;
+            });
+
+            video.addEventListener('play', evt => {
+
+
+                playButton.path.setAttribute('d', 'M9,19H7V5H9ZM17,5H15V19h2Z');
+
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    playerControlOverlay.style.visibility = 'hidden';
+                }, 3000);
+
+                if (!video.videoHeight) return;
+                let factor = Math.max(video.videoWidth / window.innerWidth, video.videoHeight / window.innerHeight);
+
+                let width = video.videoWidth / factor;
+                let height = video.videoHeight / factor;
+
+                video.style.width = width + 'px';
+                video.style.height = height + 'px';
+                video.style.marginLeft = (window.innerWidth - width) / 2 + 'px';
+                //video.style.marginTop = (window.innerHeight - height) / 2 + 'px';
+
+                player.style.paddingBottom = '0';
+                player.style.height = height + 'px';
+
+            })
+            video.addEventListener('pause', evt => {
+                playButton.path.setAttribute('d', 'M6,4l12,8L6,20V4z');
+            })
+            playButton.addEventListener('click', evt => {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                    clearTimeout(timeout);
+                }
+            })
+            html5VideoPlayer.addEventListener('click', evt => {
+                playerControlOverlay.style.visibility = 'visible';
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    playerControlOverlay.style.visibility = 'hidden';
+                }, 3000);
+            });
+            fullScreenButton.addEventListener('click', async evt => {
+                if (!document.fullscreen) {
+                    try {
+                        await document.documentElement.requestFullscreen();
+                    } catch (e) {
+                        console.log(e);
+                    }
+                } else {
+                    try {
+                        await document.exitFullscreen();
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
+
+            })
+            jumpSpecifiedTime(video);
+            video.addEventListener('ended', evt => {
+                const index = getIndexOfCurrentlyPlayingVideo(video);
+                console.log(index);
+                if (index + 1 < items.length)
+                    playVideo(items[index + 1]);
+            })
+        }
+
+        startVideo();
+
+        window.addEventListener('resize', evt => {
+            adjustSize(video, player);
+        });
+        window.addEventListener("orientationchange", function () {
+            console.log("the orientation of the device is now " + screen.orientation.angle);
+            //adjustSize(video, player);
+        });
+
+
+        async function getVideosFromServer() {
+
+            const order = localStorage.getItem('order');
+            let o = 2;
+            if (order) {
+                o = parseInt(order);
+            }
+            const path = substringBeforeLast(new URL(location.href).searchParams.get('path'), "/");
+            const response = await fetch(`/api/files?path=${encodeURIComponent(path)}&order=${o}`);
+            const items = await response.json();
+            return items
+                .filter(x => x.name.endsWith('.mp4'));
+        }
+
+        let items;
+
+        function getIndexOfCurrentlyPlayingVideo(video) {
+
+            const path = extractVideoPathFromUrlAddress(video);
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].fullName === path) return i;
+            }
+            return -1;
+        }
+
+        let _items;
+        async function fetchItems() {
+
+            const div = document.createElement('div');
+            const fragment = document.createDocumentFragment();
+            items = await getVideosFromServer();
+
+            _items = items;
+
+            items.forEach(x => {
+                const ytmMediaItem = document.createElement('div');
+
+                [
+                    [
+                        "margin",
+                        "0 12px"
+                    ]
+                ]
+                    .forEach(x => ytmMediaItem.style[x[0]] = x[1]);
+
+                const mediaItemThumbnailContainer = document.createElement('div');
+
+                [
+                    [
+                        "color",
+                        "currentColor"
+                    ],
+                    [
+                        "textDecoration",
+                        "none"
+                    ],
+                    [
+                        "display",
+                        "block"
+                    ]
+                ]
+                    .forEach(x => mediaItemThumbnailContainer.style[x[0]] = x[1]);
+
+                const videoThumbnailContainerLarge = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "WebkitBoxAlign",
+                        "center"
+                    ],
+                    [
+                        "alignItems",
+                        "center"
+                    ],
+                    [
+                        "WebkitBoxPack",
+                        "center"
+                    ],
+                    [
+                        "justifyContent",
+                        "center"
+                    ],
+                    [
+                        "position",
+                        "relative"
+                    ],
+                    [
+                        "flexShrink",
+                        "0"
+                    ],
+                    [
+                        "overflow",
+                        "hidden"
+                    ],
+                    [
+                        "paddingBottom",
+                        "56.25%"
+                    ],
+                    [
+                        "margin",
+                        "-13px -12px 0"
+                    ],
+                    [
+                        "paddingTop",
+                        "13px"
+                    ],
+                    [
+                        "marginTop",
+                        "0"
+                    ],
+                    [
+                        "marginLeft",
+                        "0"
+                    ],
+                    [
+                        "marginRight",
+                        "0"
+                    ]
+                ]
+                    .forEach(x => videoThumbnailContainerLarge.style[x[0]] = x[1]);
+
+                const videoThumbnailBg = document.createElement('div');
+
+                [
+                    [
+                        "position",
+                        "absolute"
+                    ],
+                    [
+                        "top",
+                        "0"
+                    ],
+                    [
+                        "bottom",
+                        "0"
+                    ],
+                    [
+                        "left",
+                        "0"
+                    ],
+                    [
+                        "right",
+                        "0"
+                    ],
+                    [
+                        "width",
+                        "100%"
+                    ],
+                    [
+                        "minHeight",
+                        "100%"
+                    ],
+                    [
+                        "margin",
+                        "auto"
+                    ],
+                    [
+                        "backgroundColor",
+                        "rgba(0,0,0,0.1)"
+                    ]
+                ]
+                    .forEach(x => videoThumbnailBg.style[x[0]] = x[1]);
+
+                const videoThumbnailImg = document.createElement('img');
+
+                [
+                    [
+                        "minWidth",
+                        "1px"
+                    ],
+                    [
+                        "filter",
+                        "none"
+                    ],
+                    [
+                        "position",
+                        "absolute"
+                    ],
+                    [
+                        "top",
+                        "0"
+                    ],
+                    [
+                        "bottom",
+                        "0"
+                    ],
+                    [
+                        "left",
+                        "0"
+                    ],
+                    [
+                        "right",
+                        "0"
+                    ],
+                    [
+                        "width",
+                        "100%"
+                    ],
+                    [
+                        "minHeight",
+                        "100%"
+                    ],
+                    [
+                        "margin",
+                        "auto"
+                    ],
+                    [
+                        "objectFit",
+                        "cover"
+                    ]
+                ]
+                    .forEach(x => videoThumbnailImg.style[x[0]] = x[1]);
+
+                const videoThumbnailOverlayBottomGroup = document.createElement('div');
+
+                [
+                    [
+                        "position",
+                        "absolute"
+                    ],
+                    [
+                        "bottom",
+                        "0"
+                    ],
+                    [
+                        "left",
+                        "0"
+                    ],
+                    [
+                        "right",
+                        "0"
+                    ],
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "WebkitBoxOrient",
+                        "vertical"
+                    ],
+                    [
+                        "WebkitBoxDirection",
+                        "normal"
+                    ],
+                    [
+                        "flexDirection",
+                        "column"
+                    ],
+                    [
+                        "WebkitBoxAlign",
+                        "end"
+                    ],
+                    [
+                        "alignItems",
+                        "flex-end"
+                    ]
+                ]
+                    .forEach(x => videoThumbnailOverlayBottomGroup.style[x[0]] = x[1]);
+
+                const ytmThumbnailOverlayTimeStatusRenderer = document.createElement('div');
+
+                [
+                    [
+                        "margin",
+                        "5px"
+                    ],
+                    [
+                        "padding",
+                        "1px 4px"
+                    ],
+                    [
+                        "borderRadius",
+                        "2px"
+                    ],
+                    [
+                        "fontSize",
+                        "1.2rem"
+                    ],
+                    [
+                        "color",
+                        "#fff"
+                    ],
+                    [
+                        "backgroundColor",
+                        "rgba(0,0,0,0.8)"
+                    ]
+                ]
+                    .forEach(x => ytmThumbnailOverlayTimeStatusRenderer.style[x[0]] = x[1]);
+
+                const details = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "WebkitBoxFlex",
+                        "1"
+                    ],
+                    [
+                        "flexGrow",
+                        "1"
+                    ],
+                    [
+                        "minWidth",
+                        "0"
+                    ],
+                    [
+                        "marginTop",
+                        "12px"
+                    ],
+                    [
+                        "marginBottom",
+                        "24px"
+                    ]
+                ]
+                    .forEach(x => details.style[x[0]] = x[1]);
+
+                const mediaChannel = document.createElement('div');
+
+                [
+                    [
+                        "flexShrink",
+                        "0"
+                    ]
+                ]
+                    .forEach(x => mediaChannel.style[x[0]] = x[1]);
+
+                const ytmProfileIcon = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "inline-block"
+                    ],
+                    [
+                        "overflow",
+                        "hidden"
+                    ],
+                    [
+                        "flexShrink",
+                        "0"
+                    ],
+                    [
+                        "borderRadius",
+                        "50%"
+                    ],
+                    [
+                        "backgroundColor",
+                        "rgba(0,0,0,0.1)"
+                    ],
+                    [
+                        "width",
+                        "40px"
+                    ],
+                    [
+                        "height",
+                        "40px"
+                    ]
+                ]
+                    .forEach(x => ytmProfileIcon.style[x[0]] = x[1]);
+
+                const profileIconImg = document.createElement('div');
+
+                [
+                    [
+                        "minWidth",
+                        "1px"
+                    ],
+                    [
+                        "minHeight",
+                        "1px"
+                    ],
+                    [
+                        "filter",
+                        "none"
+                    ],
+                    [
+                        "width",
+                        "100%"
+                    ],
+                    [
+                        "height",
+                        "100%"
+                    ],
+                    [
+                        "objectFit",
+                        "cover"
+                    ]
+                ]
+                    .forEach(x => profileIconImg.style[x[0]] = x[1]);
+
+                const mediaItemInfo = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "WebkitBoxFlex",
+                        "1"
+                    ],
+                    [
+                        "flexGrow",
+                        "1"
+                    ],
+                    [
+                        "minWidth",
+                        "0"
+                    ],
+                    [
+                        "WebkitBoxAlign",
+                        "start"
+                    ],
+                    [
+                        "alignItems",
+                        "flex-start"
+                    ],
+                    [
+                        "marginLeft",
+                        "12px"
+                    ]
+                ]
+                    .forEach(x => mediaItemInfo.style[x[0]] = x[1]);
+
+                const mediaItemMetadata = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "WebkitBoxFlex",
+                        "1"
+                    ],
+                    [
+                        "flexGrow",
+                        "1"
+                    ],
+                    [
+                        "WebkitBoxOrient",
+                        "vertical"
+                    ],
+                    [
+                        "WebkitBoxDirection",
+                        "normal"
+                    ],
+                    [
+                        "flexDirection",
+                        "column"
+                    ],
+                    [
+                        "minWidth",
+                        "0"
+                    ]
+                ]
+                    .forEach(x => mediaItemMetadata.style[x[0]] = x[1]);
+
+                const h3 = document.createElement('h3');
+
+                [
+                    [
+                        "margin",
+                        "0 0 3px"
+                    ],
+                    [
+                        "display",
+                        "-webkit-box"
+                    ],
+                    [
+                        "WebkitBoxOrient",
+                        "vertical"
+                    ],
+                    [
+                        "maxHeight",
+                        "2.5em"
+                    ],
+                    [
+                        "WebkitLineClamp",
+                        "2"
+                    ],
+                    [
+                        "overflow",
+                        "hidden"
+                    ],
+                    [
+                        "lineHeight",
+                        "1.25"
+                    ],
+                    [
+                        "textOverflow",
+                        "ellipsis"
+                    ],
+                    [
+                        "fontWeight",
+                        "400"
+                    ],
+                    [
+                        "fontSize",
+                        "1.4rem"
+                    ]
+                ]
+                    .forEach(x => h3.style[x[0]] = x[1]);
+
+                const ytmBadgeAndBylineRenderer = document.createElement('div');
+
+                [
+                    [
+                        "WebkitBoxOrient",
+                        "vertical"
+                    ],
+                    [
+                        "display",
+                        "-webkit-box"
+                    ],
+                    [
+                        "WebkitLineClamp",
+                        "2"
+                    ],
+                    [
+                        "maxHeight",
+                        "3em"
+                    ],
+                    [
+                        "textOverflow",
+                        "ellipsis"
+                    ],
+                    [
+                        "overflow",
+                        "hidden"
+                    ]
+                ]
+                    .forEach(x => ytmBadgeAndBylineRenderer.style[x[0]] = x[1]);
+
+                const ytmBadgeAndBylineItemByline = document.createElement('div');
+
+                [
+                    [
+                        "fontSize",
+                        "1.2rem"
+                    ],
+                    [
+                        "marginRight",
+                        "4px"
+                    ],
+                    [
+                        "display",
+                        "inline"
+                    ],
+                    [
+                        "opacity",
+                        ".6"
+                    ]
+                ]
+                    .forEach(x => ytmBadgeAndBylineItemByline.style[x[0]] = x[1]);
+
+                const ytmMenuRenderer = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "flex"
+                    ],
+                    [
+                        "flexShrink",
+                        "0"
+                    ]
+                ]
+                    .forEach(x => ytmMenuRenderer.style[x[0]] = x[1]);
+
+                const button = document.createElement('div');
+
+                [
+                    [
+                        "outline",
+                        "none"
+                    ],
+                    [
+                        "font",
+                        "inherit"
+                    ],
+                    [
+                        "textTransform",
+                        "inherit"
+                    ],
+                    [
+                        "color",
+                        "inherit"
+                    ],
+                    [
+                        "cursor",
+                        "pointer"
+                    ],
+                    [
+                        "border",
+                        "none"
+                    ],
+                    [
+                        "background",
+                        "transparent"
+                    ],
+                    [
+                        "width",
+                        "40px"
+                    ],
+                    [
+                        "height",
+                        "40px"
+                    ],
+                    [
+                        "padding",
+                        "8px"
+                    ],
+                    [
+                        "boxSizing",
+                        "border-box"
+                    ]
+                ]
+                    .forEach(x => button.style[x[0]] = x[1]);
+
+                const c3Icon = document.createElement('div');
+
+                [
+                    [
+                        "display",
+                        "inline-block"
+                    ],
+                    [
+                        "flexShrink",
+                        "0"
+                    ],
+                    [
+                        "width",
+                        "24px"
+                    ],
+                    [
+                        "height",
+                        "24px"
+                    ],
+                    [
+                        "fill",
+                        "currentColor"
+                    ],
+                    [
+                        "stroke",
+                        "none"
+                    ]
+                ]
+                    .forEach(x => c3Icon.style[x[0]] = x[1]);
+
+                videoThumbnailOverlayBottomGroup.appendChild(ytmThumbnailOverlayTimeStatusRenderer);
+                videoThumbnailContainerLarge.appendChild(videoThumbnailBg);
+                videoThumbnailContainerLarge.appendChild(videoThumbnailImg);
+                videoThumbnailContainerLarge.appendChild(videoThumbnailOverlayBottomGroup);
+                mediaItemThumbnailContainer.appendChild(videoThumbnailContainerLarge);
+                ytmMediaItem.appendChild(mediaItemThumbnailContainer);
+
+                ytmProfileIcon.appendChild(profileIconImg);
+                mediaChannel.appendChild(ytmProfileIcon);
+                details.appendChild(mediaChannel);
+
+                mediaItemMetadata.appendChild(h3);
+
+
+                ytmBadgeAndBylineRenderer.appendChild(ytmBadgeAndBylineItemByline);
+                mediaItemMetadata.appendChild(ytmBadgeAndBylineRenderer);
+
+                mediaItemInfo.appendChild(mediaItemMetadata);
+                details.appendChild(mediaItemInfo);
+
+                button.appendChild(c3Icon);
+                ytmMenuRenderer.appendChild(button);
+                details.appendChild(ytmMenuRenderer);
+
+                ytmMediaItem.appendChild(details);
+
+                h3.textContent = x.name;
+                videoThumbnailImg.src = '/api/files?path=' + encodeURIComponent(
+                    substringBeforeLast(x.fullName, "/") + "/" +
+                    substringBeforeLast(x.name, ".")) + ".jpg";
+                ytmThumbnailOverlayTimeStatusRenderer.textContent = humanFileSize(x.length);
+
+                ytmMediaItem.addEventListener('click', evt => {
+                    playVideo(x);
+                })
+                fragment.appendChild(ytmMediaItem);
+            })
+            div.appendChild(fragment);
+            div.style.paddingTop = (document.querySelector('div').getBoundingClientRect().height + 36) + 'px';
+            document.body.appendChild(div);
+        }
+
+        function playVideo(x) {
+            video.load();
+            //video.querySelector('track').remove();
+            video.textTracks[video.textTracks.length - 1].mode = "disabled";
+            video.src = `/api/files?path=${encodeURIComponent(x.fullName)}`;
+            const track = document.createElement('track');
+            track.src = substringBeforeLast(video.src, ".") + ".vtt";
+            track.default = true;
+            video.appendChild(track);
+            playerControlOverlay.style.visibility = 'visible';
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                playerControlOverlay.style.visibility = 'hidden';
+            }, 3000);
+            titleMessage.textContent = x.name;
+            setTimeout(() => {
+                //  titleMessage.textContent = '';
+            }, 3000);
+            video.play();
+        }
+
+        fetchItems();
+        /*
+        let offsetX;
+        let width=ytmProgressBar.getBoundingClientRect().width;
+        ytmProgressBar.addEventListener('touchstart', evt => {
+            offsetX = evt.touches[0].clientX;
+        });
+    
+        ytmProgressBar.addEventListener('touchmove', evt => {
+            offsetX = evt.touches[0].clientX - offsetX;
+            video.currentTime = offsetX / window.innerWidth * video.duration;
+        });
+        ytmProgressBar.addEventListener('touchmove', evt => {
+            offsetX = evt.touches[0].clientX - offsetX;
+            video.currentTime = offsetX / width * video.duration;
+        });
+        ytmProgressBar.addEventListener('touchend', evt => {
+            offsetX = 0;
+        });
+       
+      */
+
+        const titleMessage = document.createElement('div');
+        titleMessage.style.padding = '10px';
+        titleMessage.style.backgroundColor = '#333';
+        titleMessage.style.color = '#fff';
+        playerControlsTop.appendChild(titleMessage);
+
+        titleMessage.addEventListener('click', evt => {
+            evt.stopPropagation();
+            const div = createBottomSheet(_items);
+            document.body.appendChild(div);
+        });
+        function createBottomSheet(items) {
+            const div = document.createElement('div');
+            div.style.position = "fixed";
+            div.style.zIndex = "5";
+            const div1 = document.createElement('div');
+            div1.style.position = "fixed";
+            div1.style.top = "0";
+            div1.style.bottom = "0";
+            div1.style.left = "0";
+            div1.style.right = "0";
+            div1.style.zIndex = "1";
+            div1.style.cursor = "pointer";
+            div1.style.backgroundColor = "rgba(0,0,0,0.8)";
+            div.appendChild(div1);
+            const button = document.createElement('button');
+            button.style.padding = "0";
+            button.style.border = "none";
+            button.style.outline = "none";
+            button.style.font = "inherit";
+            button.style.textTransform = "inherit";
+            button.style.color = "inherit";
+            button.style.background = "transparent";
+            button.style.cursor = "pointer";
+            button.style.position = "fixed";
+            button.style.top = "0";
+            button.style.left = "0";
+            button.style.height = "1px";
+            button.style.width = "1px";
+            div1.appendChild(button);
+            const div2 = document.createElement('div');
+            div2.style.borderRadius = "12px";
+            div2.style.backgroundColor = "#fff";
+            div2.style.display = "block";
+            div2.style.overflow = "hidden";
+            div2.style.position = "fixed";
+            div2.style.margin = "0 8px 24px";
+            div2.style.bottom = "0";
+            div2.style.left = "0";
+            div2.style.right = "0";
+            div2.style.zIndex = "2";
+            div.appendChild(div2);
+            const div3 = document.createElement('div');
+            div3.style.overflow = "hidden";
+            div3.style.WebkitBoxFlex = "0";
+            div3.style.flex = "none";
+            div3.style.borderBottom = "1px solid #fff";
+            div2.appendChild(div3);
+            const div4 = document.createElement('div');
+            div4.style.WebkitBoxFlex = "1";
+            div4.style.flex = "1";
+            div4.style.overflowY = "scroll";
+            div4.style.maxHeight = "192px";
+            div2.appendChild(div4);
+            const bottomSheetContent = document.createElement('div');
+            bottomSheetContent.setAttribute("class", "bottom-sheet-content");
+            bottomSheetContent.style.display = "flex";
+            bottomSheetContent.style.WebkitBoxOrient = "vertical";
+            bottomSheetContent.style.WebkitBoxDirection = "normal";
+            bottomSheetContent.style.flexDirection = "column";
+            bottomSheetContent.style.color = "#030303";
+            div4.appendChild(bottomSheetContent);
+
+            for (const iterator of items) {
+                const menuItem = document.createElement('div');
+                menuItem.setAttribute("class", "menu-item");
+                menuItem.style.display = "flex";
+                menuItem.style.WebkitBoxAlign = "center";
+                menuItem.style.alignItems = "center";
+                menuItem.style.padding = "0";
+                menuItem.style.height = "48px";
+                const div5 = document.createElement('div');
+                div5.style.border = "none";
+                div5.style.outline = "none";
+                div5.style.font = "inherit";
+                div5.style.color = "inherit";
+                div5.style.background = "transparent";
+                div5.style.cursor = "pointer";
+                div5.style.boxSizing = "border-box";
+                div5.style.display = "block";
+                div5.style.textAlign = "initial";
+                div5.style.textTransform = "unset";
+                div5.style.width = "100%";
+                div5.style.padding = "0";
+                div5.style.marginLeft = "12px";
+                div5.style.fontSize = "16px";
+                div5.style.lineHeight = "22px";
+                menuItem.appendChild(div5);
+                div5.textContent = iterator.name;
+                bottomSheetContent.appendChild(menuItem);
+
+                menuItem.addEventListener('click', evt => {
+                    playVideo(iterator);
+                });
+            }
+            div1.addEventListener('click', evt => {
+                evt.stopPropagation();
+                div.remove();
+            });
+            return div;
+        }
+    </script>
+</body>
+
+</html>

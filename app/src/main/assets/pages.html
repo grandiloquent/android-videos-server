@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        function createBottomSheet(items) {
+            const div = document.createElement('div');
+            div.style.position = "fixed";
+            div.style.zIndex = "5";
+            const div1 = document.createElement('div');
+            div1.style.position = "fixed";
+            div1.style.top = "0";
+            div1.style.bottom = "0";
+            div1.style.left = "0";
+            div1.style.right = "0";
+            div1.style.zIndex = "1";
+            div1.style.cursor = "pointer";
+            div1.style.backgroundColor = "rgba(0,0,0,0.8)";
+            div.appendChild(div1);
+            const button = document.createElement('button');
+            button.style.padding = "0";
+            button.style.border = "none";
+            button.style.outline = "none";
+            button.style.font = "inherit";
+            button.style.textTransform = "inherit";
+            button.style.color = "inherit";
+            button.style.background = "transparent";
+            button.style.cursor = "pointer";
+            button.style.position = "fixed";
+            button.style.top = "0";
+            button.style.left = "0";
+            button.style.height = "1px";
+            button.style.width = "1px";
+            div1.appendChild(button);
+            const div2 = document.createElement('div');
+            div2.style.borderRadius = "12px";
+            div2.style.backgroundColor = "#fff";
+            div2.style.display = "block";
+            div2.style.overflow = "hidden";
+            div2.style.position = "fixed";
+            div2.style.margin = "0 8px 24px";
+            div2.style.bottom = "0";
+            div2.style.left = "0";
+            div2.style.right = "0";
+            div2.style.zIndex = "2";
+            div.appendChild(div2);
+            const div3 = document.createElement('div');
+            div3.style.overflow = "hidden";
+            div3.style.WebkitBoxFlex = "0";
+            div3.style.flex = "none";
+            div3.style.borderBottom = "1px solid #fff";
+            div2.appendChild(div3);
+            const div4 = document.createElement('div');
+            div4.style.WebkitBoxFlex = "1";
+            div4.style.flex = "1";
+            div4.style.overflowY = "scroll";
+            div4.style.maxHeight = "192px";
+            div2.appendChild(div4);
+            const bottomSheetContent = document.createElement('div');
+            bottomSheetContent.setAttribute("class", "bottom-sheet-content");
+            bottomSheetContent.style.display = "flex";
+            bottomSheetContent.style.WebkitBoxOrient = "vertical";
+            bottomSheetContent.style.WebkitBoxDirection = "normal";
+            bottomSheetContent.style.flexDirection = "column";
+            bottomSheetContent.style.color = "#030303";
+            div4.appendChild(bottomSheetContent);
+
+            for (const iterator of items) {
+                const menuItem = document.createElement('div');
+                menuItem.setAttribute("class", "menu-item");
+                menuItem.style.display = "flex";
+                menuItem.style.WebkitBoxAlign = "center";
+                menuItem.style.alignItems = "center";
+                menuItem.style.padding = "0";
+                menuItem.style.height = "48px";
+                const div5 = document.createElement('div');
+                div5.style.border = "none";
+                div5.style.outline = "none";
+                div5.style.font = "inherit";
+                div5.style.color = "inherit";
+                div5.style.background = "transparent";
+                div5.style.cursor = "pointer";
+                div5.style.boxSizing = "border-box";
+                div5.style.display = "block";
+                div5.style.textAlign = "initial";
+                div5.style.textTransform = "unset";
+                div5.style.width = "100%";
+                div5.style.padding = "0";
+                div5.style.marginLeft = "12px";
+                div5.style.fontSize = "16px";
+                div5.style.lineHeight = "22px";
+                menuItem.appendChild(div5);
+                div5.textContent = iterator;
+                bottomSheetContent.appendChild(menuItem);
+            }
+
+            return div;
+        }
+
+        document.body.append(createBottomSheet())
+    </script>
+</body>
+
+</html>
