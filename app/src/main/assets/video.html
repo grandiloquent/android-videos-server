@@ -27,13 +27,12 @@
             font-size: 1.2rem;
             /*overflow-x: hidden*/
         }
-
     </style>
 </head>
 
 <body>
 
-<script>
+    <script>
         function substringBeforeLast(string, delimiter, missingDelimiterValue) {
             const index = string.lastIndexOf(delimiter);
             if (index === -1) {
@@ -253,8 +252,8 @@
         }
 
 
-</script>
-<script>
+    </script>
+    <script>
         /*const video = document.querySelector('video');
         const track = document.createElement('track');
         track.src="http://192.168.0.105:8080/api/file?path=D%3A%5C%E6%96%87%E6%A1%A3%5C%E6%95%99%E7%A8%8B%5CAdobe%20Animate%20Essential%20Training%5C001.%20Animating%20media%20with%20Adobe%20Animate.vtt";
@@ -457,6 +456,29 @@
         ].forEach(x => playerControlsPb.style[x[0]] = x[1]);
         playerControlOverlay.appendChild(playerControlsPb);
 
+        let _clientX = 0;
+        let _offet=0;
+        let _width;
+        let _left;
+        playerControlsPb.addEventListener('touchstart', evt => {
+            _clientX = evt.touches[0].clientX;
+        });
+        playerControlsPb.addEventListener('touchmove', evt => {
+            _offet = evt.touches[0].clientX-_clientX;
+            //console.log( _offet)
+            if(!_width){
+                _width=playerControlsPb.getBoundingClientRect().width;
+                _left=playerControlsPb.getBoundingClientRect().left;
+            }
+           video.currentTime=(evt.touches[0].clientX-_left)/_width*video.duration;
+        });
+        playerControlsPb.addEventListener('touchend', evt => {
+            if(!_width){
+                _width=playerControlsPb.getBoundingClientRect().width;
+                _left=playerControlsPb.getBoundingClientRect().left;
+            }
+          video.currentTime=(evt.touches[0].clientX-_left)/_width*video.duration;
+        });
         const ytmProgressBar = document.createElement('div');
         [
 
@@ -558,25 +580,25 @@
         }
 
         let timeout = 0;
-function substringAfterLast(string, delimiter, missingDelimiterValue) {
-    const index = string.lastIndexOf(delimiter);
-    if (index === -1) {
-        return missingDelimiterValue || string;
-    } else {
-        return string.substring(index + delimiter.length);
-    }
-}
+        function substringAfterLast(string, delimiter, missingDelimiterValue) {
+            const index = string.lastIndexOf(delimiter);
+            if (index === -1) {
+                return missingDelimiterValue || string;
+            } else {
+                return string.substring(index + delimiter.length);
+            }
+        }
         function startVideo() {
 
 
             timeFirst.textContent = "00:00";
-
+            // http://192.168.8.55:8001
 
             video.src = `/api/files?path=${encodeURIComponent(extractVideoPathFromUrlAddress())}`;
             const track = document.createElement('track');
             track.src = substringBeforeLast(video.src, ".") + ".vtt";
-            if(titleMessage)
-            titleMessage.textContent=substringAfterLast(extractVideoPathFromUrlAddress(),'/');
+            if (titleMessage)
+                titleMessage.textContent = substringAfterLast(extractVideoPathFromUrlAddress(), '/');
             track.default = true;
             video.appendChild(track);
 
@@ -1404,12 +1426,9 @@ function substringAfterLast(string, delimiter, missingDelimiterValue) {
         });
     
         ytmProgressBar.addEventListener('touchmove', evt => {
-            offsetX = evt.touches[0].clientX - offsetX;
-            video.currentTime = offsetX / window.innerWidth * video.duration;
-        });
-        ytmProgressBar.addEventListener('touchmove', evt => {
-            offsetX = evt.touches[0].clientX - offsetX;
-            video.currentTime = offsetX / width * video.duration;
+            //offsetX = evt.touches[0].clientX - offsetX;
+            //video.currentTime = offsetX / width * video.duration;
+            video.currentTime = evt.touches[0].clientX / width * video.duration;
         });
         ytmProgressBar.addEventListener('touchend', evt => {
             offsetX = 0;
@@ -1531,7 +1550,7 @@ function substringAfterLast(string, delimiter, missingDelimiterValue) {
             return div;
         }
 
-</script>
+    </script>
 </body>
 
 </html>

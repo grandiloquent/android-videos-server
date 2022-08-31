@@ -50,7 +50,7 @@ public class FileService extends Service {
         startForeground(hashCode(), showNotification("文件服务器"));
         new Thread(() -> {
             Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-            startServer(null);
+            startServer(null);//null "192.168.8.55"
         }).start();
     }
 
