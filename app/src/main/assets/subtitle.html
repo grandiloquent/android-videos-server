@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="content">
+
+    </div>
+    <script>
+        fetch(`/api/files?path=${new URL(window.location).searchParams.get('path')}`)
+            .then(res => res.text())
+            .then(res => {
+                document.getElementById('content').textContent = parse(res);
+            })
+        function parse(text) {
+
+            let lines = text.split("\n");
+            let transcript = [];
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i];
+
+                if (/^\d{1,}$/.test(line.trim()) || line.indexOf(" --> ")!==-1) {
+                    continue;
+                }
+                transcript.push(line);
+            }
+
+            return transcript.join(' ');
+        }
+    </script>
+</body>
+
+</html>
